@@ -1,0 +1,16 @@
+name: Sync upstream
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # 每 6 小时同步一次
+  workflow_dispatch:       # 也可以手动触发
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync from upstream
+        run: |
+          git clone --mirror https://github.com/liandu2024/Open-Box.git upstream.git
+          cd upstream.git
+          git push --mirror https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
