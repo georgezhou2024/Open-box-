@@ -10,6 +10,20 @@
 
 ---
 
+## 一键修复更新（出问题就跑这个）
+
+SSH 登上路由器，粘贴下面这行命令回车即可。
+
+它会自动：清理卡死进程 → 绕过组件更新死循环 → 自动选直连/镜像 → 完整包升级到最新版。
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/georgezhou2024/Open-box-/main/fix-update.sh | sh
+```
+
+> 脚本源码：[fix-update.sh](./fix-update.sh)
+
+---
+
 ## 忘记面板密码
 
 面板密码保存在路由器上，能以 root 登上路由器就能查到，不需要重装，也不会丢失订阅和规则。
@@ -23,14 +37,6 @@
 ### 方法二：SSH 命令
 
 SSH 登上路由器后运行：
-
-```sh
-# 打开管理菜单，选 1 查看当前密码
-open-box
-# 然后输入 1
-```
-
-或者直接一行命令：
 
 ```sh
 open-box password
